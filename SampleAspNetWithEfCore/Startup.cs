@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SampleAspNetWithEfCore.DataAccess;
+using Sentry.AspNetCore;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Security.Claims;
@@ -62,8 +63,9 @@ namespace SampleAspNetWithEfCore
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
+            app.UseSentryTracing();
             app.UseMvc();
-            
+
             var db = services.GetService<PeopleDbContext>();
             db.Database.Migrate();
             PeopleDbContext.Seed(db);

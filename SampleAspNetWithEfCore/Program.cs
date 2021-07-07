@@ -12,6 +12,7 @@ namespace SampleAspNetWithEfCore
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseSentry()
                 .UseStartup<Startup>();
     }
 }
